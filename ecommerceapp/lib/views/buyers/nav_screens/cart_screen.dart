@@ -20,6 +20,14 @@ class CartScreen extends StatelessWidget {
             letterSpacing: 3,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              _cartProvider.removeAllItem();
+            },
+            icon: Icon(CupertinoIcons.delete),
+          ),
+        ],
       ),
       body: ListView.builder(
           shrinkWrap: true,

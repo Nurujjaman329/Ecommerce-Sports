@@ -78,4 +78,10 @@ class CartProvider with ChangeNotifier {
 
     notifyListeners();
   }
+
+  removeAllItem() {
+    _cartItems.clear();
+
+    notifyListeners();
+  }
 }
