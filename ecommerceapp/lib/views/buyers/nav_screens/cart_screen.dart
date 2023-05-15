@@ -164,7 +164,10 @@ class CartScreen extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              'CHECKOUT',
+              '\$' +
+                  _cartProvider.totalPrice.toStringAsFixed(2) +
+                  '  ' +
+                  'CHECKOUT',
               style: TextStyle(
                 color: Colors.white,
                 letterSpacing: 3,
