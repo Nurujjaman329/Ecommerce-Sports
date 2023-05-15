@@ -69,14 +69,17 @@ class CartScreen extends StatelessWidget {
                             height: 40,
                             width: 120,
                             decoration: BoxDecoration(
-                                color: Colors.yellow.shade900,
-                                borderRadius: BorderRadius.circular(10)),
+                              color: Colors.yellow.shade900,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                             child: Row(
                               children: [
                                 IconButton(
-                                  onPressed: () {
-                                    _cartProvider.decrement(cartData);
-                                  },
+                                  onPressed: cartData.quantity == 1
+                                      ? null
+                                      : () {
+                                          _cartProvider.decrement(cartData);
+                                        },
                                   icon: Icon(
                                     CupertinoIcons.minus,
                                     color: Colors.white,
