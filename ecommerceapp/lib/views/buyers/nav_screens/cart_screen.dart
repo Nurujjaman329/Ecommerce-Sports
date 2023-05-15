@@ -92,9 +92,12 @@ class CartScreen extends StatelessWidget {
                                   ),
                                 ),
                                 IconButton(
-                                  onPressed: () {
-                                    _cartProvider.increment(cartData);
-                                  },
+                                  onPressed: cartData.productQuantity ==
+                                          cartData.quantity
+                                      ? null
+                                      : () {
+                                          _cartProvider.increment(cartData);
+                                        },
                                   icon: Icon(
                                     CupertinoIcons.plus,
                                     color: Colors.white,

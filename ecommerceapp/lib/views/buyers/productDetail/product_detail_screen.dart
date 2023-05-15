@@ -217,6 +217,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 widget.productData['productId'],
                 widget.productData['imageUrl'],
                 1,
+                widget.productData['quantity'],
                 widget.productData['productPrice'],
                 widget.productData['vendorId'],
                 _selectedSize!,
