@@ -28,7 +28,7 @@ class CartScreen extends StatelessWidget {
             final cartData = _cartProvider.getCartItem.values.toList()[index];
             return Card(
               child: SizedBox(
-                height: 170,
+                height: 175,
                 child: Row(
                   children: [
                     SizedBox(
@@ -65,46 +65,58 @@ class CartScreen extends StatelessWidget {
                               cartData.productSize,
                             ),
                           ),
-                          Container(
-                            height: 40,
-                            width: 120,
-                            decoration: BoxDecoration(
-                              color: Colors.yellow.shade900,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Row(
-                              children: [
-                                IconButton(
-                                  onPressed: cartData.quantity == 1
-                                      ? null
-                                      : () {
-                                          _cartProvider.decrement(cartData);
-                                        },
-                                  icon: Icon(
-                                    CupertinoIcons.minus,
-                                    color: Colors.white,
-                                  ),
+                          Row(
+                            children: [
+                              Container(
+                                height: 40,
+                                width: 110,
+                                decoration: BoxDecoration(
+                                  color: Colors.yellow.shade900,
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                Text(
-                                  cartData.quantity.toString(),
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
+                                child: Row(
+                                  children: [
+                                    IconButton(
+                                      onPressed: cartData.quantity == 1
+                                          ? null
+                                          : () {
+                                              _cartProvider.decrement(cartData);
+                                            },
+                                      icon: Icon(
+                                        CupertinoIcons.minus,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Text(
+                                      cartData.quantity.toString(),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      onPressed: cartData.productQuantity ==
+                                              cartData.quantity
+                                          ? null
+                                          : () {
+                                              _cartProvider.increment(cartData);
+                                            },
+                                      icon: Icon(
+                                        CupertinoIcons.plus,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                IconButton(
-                                  onPressed: cartData.productQuantity ==
-                                          cartData.quantity
-                                      ? null
-                                      : () {
-                                          _cartProvider.increment(cartData);
-                                        },
-                                  icon: Icon(
-                                    CupertinoIcons.plus,
-                                    color: Colors.white,
-                                  ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  _cartProvider.removeItem(cartData.productId);
+                                },
+                                icon: Icon(
+                                  CupertinoIcons.cart_badge_minus,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),

@@ -10,7 +10,7 @@ class CartProvider with ChangeNotifier {
   }
 
   double get totalPrice {
-    var total = 0.0;
+    var total = 0.00;
 
     _cartItems.forEach((key, value) {
       total += value.price * value.quantity;
@@ -69,6 +69,12 @@ class CartProvider with ChangeNotifier {
 
   void decrement(CartAttr cartAttr) {
     cartAttr.decrease();
+
+    notifyListeners();
+  }
+
+  removeItem(productId) {
+    _cartItems.remove(productId);
 
     notifyListeners();
   }
