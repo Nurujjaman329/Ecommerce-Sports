@@ -153,6 +153,28 @@ class CartScreen extends StatelessWidget {
       //    ],
       //  ),
       //),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 50,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.yellow.shade900,
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Center(
+            child: Text(
+              'CHECKOUT',
+              style: TextStyle(
+                color: Colors.white,
+                letterSpacing: 3,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
