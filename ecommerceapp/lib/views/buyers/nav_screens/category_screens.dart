@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerceapp/views/buyers/inner_screens/all_products_screen.dart';
 import 'package:flutter/material.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -45,6 +46,14 @@ class CategoryScreen extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: ListTile(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return AllProductScreen(
+                            categoryData: categoryData,
+                          );
+                        }));
+                      },
                       leading: Image.network(
                         categoryData['image'],
                       ),
