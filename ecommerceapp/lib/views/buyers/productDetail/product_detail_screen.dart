@@ -186,16 +186,22 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: OutlinedButton(
-                            onPressed: () {
-                              setState(() {
-                                _selectedSize =
-                                    widget.productData['sizeList'][index];
-                              });
-                              print(_selectedSize);
-                            },
-                            child: Text(
-                              widget.productData['sizeList'][index],
+                          child: Container(
+                            color: _selectedSize ==
+                                    widget.productData['sizeList'][index]
+                                ? Colors.yellow.shade600
+                                : null,
+                            child: OutlinedButton(
+                              onPressed: () {
+                                setState(() {
+                                  _selectedSize =
+                                      widget.productData['sizeList'][index];
+                                });
+                                print(_selectedSize);
+                              },
+                              child: Text(
+                                widget.productData['sizeList'][index],
+                              ),
                             ),
                           ),
                         );
