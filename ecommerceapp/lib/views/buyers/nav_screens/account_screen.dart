@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerceapp/views/buyers/auth/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatelessWidget {
-  const AccountScreen({super.key});
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,7 @@ class AccountScreen extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           Map<String, dynamic> data =
               snapshot.data!.data() as Map<String, dynamic>;
+
           return Scaffold(
             appBar: AppBar(
               elevation: 2,
@@ -87,12 +89,24 @@ class AccountScreen extends StatelessWidget {
                   leading: Icon(Icons.shop),
                   title: Text('Cart'),
                 ),
+                ListTile(
+                  onTap: () async {
+                    await _auth.signOut().whenComplete(() {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return LoginScreen();
+                      }));
+                    });
+                  },
+                  leading: Icon(Icons.logout),
+                  title: Text('LogOut'),
+                ),
               ],
             ),
           );
         }
 
-        return CircularProgressIndicator();
+        return Center(child: CircularProgressIndicator());
       },
     );
   }
