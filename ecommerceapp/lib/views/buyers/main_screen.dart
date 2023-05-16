@@ -1,7 +1,9 @@
 import 'package:ecommerceapp/views/buyers/nav_screens/account_screen.dart';
 import 'package:ecommerceapp/views/buyers/nav_screens/cart_screen.dart';
+import 'package:ecommerceapp/views/buyers/nav_screens/category_screens.dart';
 import 'package:ecommerceapp/views/buyers/nav_screens/home_screen.dart';
 import 'package:ecommerceapp/views/buyers/nav_screens/search_screen.dart';
+import 'package:ecommerceapp/views/buyers/nav_screens/store_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,9 +19,11 @@ class _MainScreenState extends State<MainScreen> {
 
   List<Widget> _pages = [
     HomeScreen(),
+    CategoryScreen(),
+    StoreScreen(),
     SearchScreen(),
     CartScreen(),
-    AccountScreen()
+    AccountScreen(),
   ];
 
   @override
@@ -40,6 +44,12 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(CupertinoIcons.home),
             label: 'Home',
           ),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.category_outlined,
+              ),
+              label: "Category"),
+          BottomNavigationBarItem(icon: Icon(Icons.store), label: "Store"),
           BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.search), label: "Search"),
           BottomNavigationBarItem(
