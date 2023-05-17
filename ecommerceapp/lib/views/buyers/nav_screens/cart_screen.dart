@@ -177,16 +177,20 @@ class CartScreen extends StatelessWidget {
       bottomSheet: Padding(
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return CheckOutScreen();
-            }));
-          },
+          onTap: _cartProvider.totalPrice == 0.00
+              ? null
+              : () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return CheckOutScreen();
+                  }));
+                },
           child: Container(
             height: 50,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.yellow.shade900,
+              color: _cartProvider.totalPrice == 0.00
+                  ? Colors.grey
+                  : Colors.yellow.shade900,
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Center(
