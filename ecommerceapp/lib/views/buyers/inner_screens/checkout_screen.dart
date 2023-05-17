@@ -77,6 +77,33 @@ class CheckOutScreen extends StatelessWidget {
               ),
             );
           }),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.all(13.0),
+        child: InkWell(
+          onTap: () {
+            // Place order, it work of future
+            print('Place Order');
+          },
+          child: Container(
+            height: 50,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: Colors.yellow.shade900,
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Center(
+              child: Text(
+                'PLACE ORDER',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 3),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
