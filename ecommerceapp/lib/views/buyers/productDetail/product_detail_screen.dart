@@ -238,6 +238,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         widget.productData['vendorId'],
                         _selectedSize!,
                         widget.productData['scheduleDate']);
+
+                    return showSnack(context,
+                        'You Added ${widget.productData['productName']} To Your Cart');
                   }
                 },
           child: Container(
