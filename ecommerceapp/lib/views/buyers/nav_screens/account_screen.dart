@@ -3,6 +3,8 @@ import 'package:ecommerceapp/views/buyers/auth/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../inner_screens/edit_profile.dart';
+
 class AccountScreen extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -67,6 +69,33 @@ class AccountScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return EditProfileScreen();
+                    }));
+                  },
+                  child: Container(
+                    height: 40,
+                    width: MediaQuery.of(context).size.width - 200,
+                    decoration: BoxDecoration(
+                      color: Colors.yellow.shade900,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Edit Profile',
+                        style: TextStyle(
+                          color: Colors.white,
+                          letterSpacing: 2,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
                     ),
                   ),
                 ),

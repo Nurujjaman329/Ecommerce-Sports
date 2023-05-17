@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerceapp/provider/cart_provider.dart';
+import 'package:ecommerceapp/views/buyers/inner_screens/edit_profile.dart';
 import 'package:ecommerceapp/views/buyers/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +106,13 @@ class CheckOutScreen extends StatelessWidget {
                 }),
             bottomSheet: data['address'] == ''
                 ? TextButton(
-                    onPressed: () {}, child: Text('Enter Billing Address'))
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return EditProfileScreen();
+                      }));
+                    },
+                    child: Text('Enter Billing Address'))
                 : Padding(
                     padding: const EdgeInsets.all(13.0),
                     child: InkWell(
