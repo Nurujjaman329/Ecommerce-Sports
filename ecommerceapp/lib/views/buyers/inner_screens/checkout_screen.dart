@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerceapp/provider/cart_provider.dart';
+import 'package:ecommerceapp/views/buyers/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -105,6 +107,7 @@ class CheckOutScreen extends StatelessWidget {
               padding: const EdgeInsets.all(13.0),
               child: InkWell(
                 onTap: () {
+                  EasyLoading.show(status: 'Placing Order');
                   _cartProvider.getCartItem.forEach(
                     (key, item) {
                       final orderId = Uuid().v4();
@@ -124,7 +127,16 @@ class CheckOutScreen extends StatelessWidget {
                         'quantity': item.productQuantity,
                         'productSize': item.productSize,
                         'scheduleDate': item.scheduleDate,
+                        'orderDate': DateTime.now(),
+                      }).whenComplete(() {
+                        _cartProvider.getCartItem.clear();
                       });
+                      EasyLoading.dismiss();
+
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) {
+                        return MainScreen();
+                      }));
                     },
                   );
                   // Place order, it work of future
