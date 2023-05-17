@@ -218,30 +218,36 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       bottomSheet: Padding(
         padding: const EdgeInsets.all(8.0),
         child: InkWell(
-          onTap: () {
-            if (_selectedSize == null) {
-              return showSnack(
-                context,
-                'Please Select A Size',
-              );
-            } else {
-              _cartProvider.addProductToCart(
-                  widget.productData['productName'],
-                  widget.productData['productId'],
-                  widget.productData['imageUrl'],
-                  1,
-                  widget.productData['quantity'],
-                  widget.productData['productPrice'],
-                  widget.productData['vendorId'],
-                  _selectedSize!,
-                  widget.productData['scheduleDate']);
-            }
-          },
+          onTap: _cartProvider.getCartItem
+                  .containsKey(widget.productData['productId'])
+              ? null
+              : () {
+                  if (_selectedSize == null) {
+                    return showSnack(
+                      context,
+                      'Please Select A Size',
+                    );
+                  } else {
+                    _cartProvider.addProductToCart(
+                        widget.productData['productName'],
+                        widget.productData['productId'],
+                        widget.productData['imageUrl'],
+                        1,
+                        widget.productData['quantity'],
+                        widget.productData['productPrice'],
+                        widget.productData['vendorId'],
+                        _selectedSize!,
+                        widget.productData['scheduleDate']);
+                  }
+                },
           child: Container(
             height: 50,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              color: Colors.yellow.shade900,
+              color: _cartProvider.getCartItem
+                      .containsKey(widget.productData['productId'])
+                  ? Colors.grey
+                  : Colors.yellow.shade900,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Row(
@@ -257,15 +263,26 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'ADD TO CART',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      letterSpacing: 3,
-                    ),
-                  ),
+                  child: _cartProvider.getCartItem
+                          .containsKey(widget.productData['productId'])
+                      ? Text(
+                          'IN CART',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            letterSpacing: 3,
+                          ),
+                        )
+                      : Text(
+                          'ADD TO CART',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            letterSpacing: 3,
+                          ),
+                        ),
                 ),
               ],
             ),
