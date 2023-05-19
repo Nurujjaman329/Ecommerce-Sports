@@ -1,7 +1,7 @@
 import 'package:ecommerceapp/vendor/views/auth/screens/landing_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:flutter/material.dart';
-//import 'package:flutter/cupertino.dart';
+
 import 'package:flutterfire_ui/auth.dart';
 
 class VendorAuthScreen extends StatelessWidget {
