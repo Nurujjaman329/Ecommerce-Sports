@@ -8,9 +8,14 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
-class CheckOutScreen extends StatelessWidget {
+class CheckOutScreen extends StatefulWidget {
   const CheckOutScreen({super.key});
 
+  @override
+  State<CheckOutScreen> createState() => _CheckOutScreenState();
+}
+
+class _CheckOutScreenState extends State<CheckOutScreen> {
   @override
   Widget build(BuildContext context) {
     final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -112,7 +117,9 @@ class CheckOutScreen extends StatelessWidget {
                         return EditProfileScreen(
                           userData: data,
                         );
-                      }));
+                      })).whenComplete(() {
+                        Navigator.pop(context);
+                      });
                     },
                     child: Text('Enter Billing Address'))
                 : Padding(
@@ -141,7 +148,9 @@ class CheckOutScreen extends StatelessWidget {
                               'scheduleDate': item.scheduleDate,
                               'orderDate': DateTime.now(),
                             }).whenComplete(() {
-                              _cartProvider.getCartItem.clear();
+                              setState(() {
+                                _cartProvider.getCartItem.clear();
+                              });
                             });
                             EasyLoading.dismiss();
 
@@ -151,7 +160,7 @@ class CheckOutScreen extends StatelessWidget {
                             }));
                           },
                         );
-                        // Place order, it work of future
+
                         print('Place Order');
                       },
                       child: Container(
