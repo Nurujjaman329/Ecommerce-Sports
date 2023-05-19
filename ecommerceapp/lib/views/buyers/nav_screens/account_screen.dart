@@ -76,7 +76,9 @@ class AccountScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return EditProfileScreen();
+                      return EditProfileScreen(
+                        userData: data,
+                      );
                     }));
                   },
                   child: Container(

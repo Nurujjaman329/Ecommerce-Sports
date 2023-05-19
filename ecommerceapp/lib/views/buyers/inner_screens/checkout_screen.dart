@@ -109,7 +109,9 @@ class CheckOutScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return EditProfileScreen();
+                        return EditProfileScreen(
+                          userData: data,
+                        );
                       }));
                     },
                     child: Text('Enter Billing Address'))
