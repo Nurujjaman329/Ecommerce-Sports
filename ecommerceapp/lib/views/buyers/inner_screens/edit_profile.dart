@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class EditProfileScreen extends StatefulWidget {
   final dynamic userData;
@@ -11,11 +14,14 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final TextEditingController _fullNameController = TextEditingController();
 
   final TextEditingController _emailController = TextEditingController();
 
   final TextEditingController _phoneController = TextEditingController();
+
+  String? address;
 
   @override
   void initState() {
@@ -101,12 +107,53 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: TextFormField(
+                    onChanged: (value) {
+                      address = value;
+                    },
                     decoration: InputDecoration(
                       labelText: 'Enter Address',
                     ),
                   ),
                 ),
               ],
+            ),
+          ),
+        ),
+      ),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.all(13.0),
+        child: InkWell(
+          onTap: () async {
+            EasyLoading.show(status: 'UPDATING');
+            await _firestore
+                .collection('buyers')
+                .doc(FirebaseAuth.instance.currentUser!.uid)
+                .update({
+              'fullName': _fullNameController.text,
+              'email': _emailController.text,
+              'phoneNumber': _phoneController.text,
+              'address': address,
+            }).whenComplete(() {
+              EasyLoading.dismiss();
+            });
+          },
+          child: Container(
+            height: 40,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: Colors.yellow.shade900,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(
+              child: Text(
+                "UPDATE",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  letterSpacing: 4,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
         ),
