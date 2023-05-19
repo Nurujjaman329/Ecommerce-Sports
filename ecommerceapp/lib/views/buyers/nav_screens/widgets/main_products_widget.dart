@@ -50,7 +50,7 @@ class MainProductsWidget extends StatelessWidget {
                     child: Column(
                       children: [
                         Container(
-                          height: 150,
+                          height: 100,
                           width: 200,
                           decoration: BoxDecoration(
                             image: DecorationImage(
@@ -73,7 +73,7 @@ class MainProductsWidget extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            '\$' +
+                            '\৳' +
                                 ' ' +
                                 productData['productPrice'].toStringAsFixed(2),
                             style: TextStyle(

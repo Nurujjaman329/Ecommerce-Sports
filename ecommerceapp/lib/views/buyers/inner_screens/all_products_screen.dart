@@ -79,16 +79,16 @@ class AllProductScreen extends StatelessWidget {
                           child: Text(
                             productData['productName'],
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 10,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 4,
                             ),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(3.0),
                           child: Text(
-                            '\$' +
+                            '\৳' +
                                 ' ' +
                                 productData['productPrice'].toStringAsFixed(2),
                             style: TextStyle(

@@ -43,7 +43,7 @@ class CartScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         SizedBox(
-                          height: 100,
+                          height: 120,
                           width: 100,
                           child: Image.network(
                             cartData.imageUrl[0],
@@ -57,16 +57,19 @@ class CartScreen extends StatelessWidget {
                               Text(
                                 cartData.productName,
                                 style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 17,
                                     fontWeight: FontWeight.bold,
                                     letterSpacing: 3),
                               ),
+                              SizedBox(
+                                height: 2,
+                              ),
                               Text(
-                                '\$' + ' ' + cartData.price.toStringAsFixed(2),
+                                '\৳' + ' ' + cartData.price.toStringAsFixed(2),
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
-                                  letterSpacing: 3,
+                                  letterSpacing: 1,
                                   color: Colors.yellow.shade900,
                                 ),
                               ),
@@ -200,7 +203,7 @@ class CartScreen extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                '\$' +
+                '\৳' +
                     _cartProvider.totalPrice.toStringAsFixed(2) +
                     '  ' +
                     'CHECKOUT',

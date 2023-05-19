@@ -87,11 +87,11 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                           letterSpacing: 3),
                                     ),
                                     Text(
-                                      '\$' +
+                                      '\৳' +
                                           ' ' +
                                           cartData.price.toStringAsFixed(2),
                                       style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 17,
                                         fontWeight: FontWeight.bold,
                                         letterSpacing: 3,
                                         color: Colors.yellow.shade900,
