@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerceapp/views/buyers/nav_screens/category_screens.dart';
 import 'package:ecommerceapp/views/buyers/nav_screens/widgets/home_products.dart';
-import 'package:ecommerceapp/views/buyers/nav_screens/widgets/main_profucts_widget.dart';
+import 'package:ecommerceapp/views/buyers/nav_screens/widgets/main_products_widget.dart';
+
 import 'package:flutter/material.dart';
 
 class CategoryText extends StatefulWidget {
