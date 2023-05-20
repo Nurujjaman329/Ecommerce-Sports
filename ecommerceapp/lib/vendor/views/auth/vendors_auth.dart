@@ -1,4 +1,5 @@
 import 'package:ecommerceapp/vendor/views/auth/screens/landing_screen.dart';
+import 'package:ecommerceapp/vendor/views/auth/screens/main_vendor_screens.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class VendorAuthScreen extends StatelessWidget {
         }
 
         // Render your application if authenticated
-        return LandingScreen();
+        return MainVendorScreen();
       },
     );
   }
