@@ -35,6 +35,12 @@ class EditProductScreen extends StatelessWidget {
             ],
           ),
         ),
+        body: TabBarView(
+          children: [
+            PublishedTab(),
+            UnPublishedTab(),
+          ],
+        ),
       ),
     );
   }

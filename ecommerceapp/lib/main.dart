@@ -5,6 +5,7 @@ import 'package:ecommerceapp/vendor/views/auth/screens/main_vendor_screens.dart'
 import 'package:ecommerceapp/vendor/views/auth/screens/upload_screen.dart';
 import 'package:ecommerceapp/vendor/views/auth/vendors_auth.dart';
 import 'package:ecommerceapp/views/buyers/auth/login_screen.dart';
+import 'package:ecommerceapp/views/buyers/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainVendorScreen(),
+      home: VendorAuthScreen(),
       builder: EasyLoading.init(),
     );
   }
