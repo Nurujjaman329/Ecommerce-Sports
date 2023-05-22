@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerceapp/utils/show_snaksBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -125,17 +126,21 @@ class _VendorProductDetailScreenState extends State<VendorProductDetailScreen> {
         padding: const EdgeInsets.all(10.0),
         child: InkWell(
           onTap: () async {
-            await _firestore
-                .collection('products')
-                .doc(widget.productData['productId'])
-                .update({
-              'productName': _productNameController.text,
-              'brandName': _brandNameController.text,
-              'quantity': productQuantity,
-              'productPrice': productPrice,
-              'description': _productDescriptionController.text,
-              'category': _categoryNameController.text,
-            });
+            if (productPrice != null && productQuantity != null) {
+              await _firestore
+                  .collection('products')
+                  .doc(widget.productData['productId'])
+                  .update({
+                'productName': _productNameController.text,
+                'brandName': _brandNameController.text,
+                'quantity': productQuantity,
+                'productPrice': productPrice,
+                'description': _productDescriptionController.text,
+                'category': _categoryNameController.text,
+              });
+            } else {
+              showSnack(context, 'Update Quanity and Price');
+            }
           },
           child: Container(
             height: 40,
