@@ -6,7 +6,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class PublishedTab extends StatelessWidget {
-  const PublishedTab({super.key});
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class PublishedTab extends StatelessWidget {
                   // The start action pane is the one at the left or the top side.
                   startActionPane: ActionPane(
                     // A motion is a widget used to control how the pane animates.
-                    motion: const ScrollMotion(),
+                    motion: ScrollMotion(),
 
                     // A pane can dismiss the Slidable.
 
@@ -87,7 +87,14 @@ class PublishedTab extends StatelessWidget {
                       // A SlidableAction can have an icon and/or a label.
                       SlidableAction(
                         flex: 2,
-                        onPressed: (context) {},
+                        onPressed: (context) async {
+                          await _firestore
+                              .collection('products')
+                              .doc(vendorProductData['productId'])
+                              .update({
+                            'approved': false,
+                          });
+                        },
                         backgroundColor: Color(0xFF21B7CA),
                         foregroundColor: Colors.white,
                         icon: Icons.approval_rounded,
@@ -95,7 +102,12 @@ class PublishedTab extends StatelessWidget {
                       ),
                       SlidableAction(
                         flex: 2,
-                        onPressed: (context) {},
+                        onPressed: (context) async {
+                          await _firestore
+                              .collection('products')
+                              .doc(vendorProductData['productId'])
+                              .delete();
+                        },
                         backgroundColor: Colors.red,
                         foregroundColor: Colors.white,
                         icon: Icons.delete,

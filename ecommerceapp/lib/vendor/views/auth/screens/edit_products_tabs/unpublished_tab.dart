@@ -6,7 +6,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class UnPublishedTab extends StatelessWidget {
-  const UnPublishedTab({super.key});
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -87,15 +87,27 @@ class UnPublishedTab extends StatelessWidget {
                       // A SlidableAction can have an icon and/or a label.
                       SlidableAction(
                         flex: 2,
-                        onPressed: (context) {},
+                        onPressed: (context) async {
+                          await _firestore
+                              .collection('products')
+                              .doc(vendorProductData['productId'])
+                              .update({
+                            'approved': true,
+                          });
+                        },
                         backgroundColor: Color(0xFF21B7CA),
                         foregroundColor: Colors.white,
                         icon: Icons.approval_sharp,
-                        label: 'UnPublish',
+                        label: 'Publish',
                       ),
                       SlidableAction(
                         flex: 2,
-                        onPressed: (context) {},
+                        onPressed: (context) async {
+                          await _firestore
+                              .collection('products')
+                              .doc(vendorProductData['productId'])
+                              .delete();
+                        },
                         backgroundColor: Colors.red,
                         foregroundColor: Colors.white,
                         icon: Icons.delete,
