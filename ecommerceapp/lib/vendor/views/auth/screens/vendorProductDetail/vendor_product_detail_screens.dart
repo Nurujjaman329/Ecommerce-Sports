@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -13,6 +14,7 @@ class VendorProductDetailScreen extends StatefulWidget {
 }
 
 class _VendorProductDetailScreenState extends State<VendorProductDetailScreen> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final TextEditingController _productNameController = TextEditingController();
   final TextEditingController _brandNameController = TextEditingController();
   final TextEditingController _quantityController = TextEditingController();
@@ -111,21 +113,36 @@ class _VendorProductDetailScreenState extends State<VendorProductDetailScreen> {
       ),
       bottomSheet: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Container(
-          height: 40,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            color: Colors.yellow.shade900,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Center(
-            child: Text(
-              'UPDATE PRODUCT',
-              style: TextStyle(
-                fontSize: 18,
-                letterSpacing: 3,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+        child: InkWell(
+          onTap: () async {
+            await _firestore
+                .collection('products')
+                .doc(widget.productData['productId'])
+                .update({
+              'productName': _productNameController.text,
+              'brandName': _brandNameController.text,
+              'quantity': _quantityController.text,
+              'productPrice': _productPriceController.text,
+              'description': _productDescriptionController.text,
+              'category': _categoryNameController.text,
+            });
+          },
+          child: Container(
+            height: 40,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: Colors.yellow.shade900,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(
+              child: Text(
+                'UPDATE PRODUCT',
+                style: TextStyle(
+                  fontSize: 18,
+                  letterSpacing: 3,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
