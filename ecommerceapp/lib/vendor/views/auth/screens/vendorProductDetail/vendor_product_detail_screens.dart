@@ -19,6 +19,7 @@ class _VendorProductDetailScreenState extends State<VendorProductDetailScreen> {
   final TextEditingController _productPriceController = TextEditingController();
   final TextEditingController _productDescriptionController =
       TextEditingController();
+  final TextEditingController _categoryNameController = TextEditingController();
 
   @override
   void initState() {
@@ -29,6 +30,7 @@ class _VendorProductDetailScreenState extends State<VendorProductDetailScreen> {
       _productPriceController.text =
           widget.productData['productPrice'].toString();
       _productDescriptionController.text = widget.productData['description'];
+      _categoryNameController.text = widget.productData['category'];
     });
     super.initState();
   }
@@ -41,55 +43,92 @@ class _VendorProductDetailScreenState extends State<VendorProductDetailScreen> {
         elevation: 0,
         title: Text(widget.productData['productName']),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            TextFormField(
-              controller: _productNameController,
-              decoration: InputDecoration(
-                labelText: 'Product Name',
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _productNameController,
+                decoration: InputDecoration(
+                  labelText: 'Product Name',
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                controller: _brandNameController,
+                decoration: InputDecoration(
+                  labelText: 'Brand Name',
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                controller: _quantityController,
+                decoration: InputDecoration(
+                  labelText: 'Quantity',
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                controller: _productPriceController,
+                decoration: InputDecoration(
+                  labelText: 'Price',
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                maxLength: 500,
+                maxLines: 3,
+                controller: _productDescriptionController,
+                decoration: InputDecoration(
+                  labelText: 'Description',
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                enabled: false,
+                controller: _categoryNameController,
+                decoration: InputDecoration(
+                  labelText: 'Category',
+                ),
+              ),
+              SizedBox(
+                height: 70,
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Container(
+          height: 40,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: Colors.yellow.shade900,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Center(
+            child: Text(
+              'UPDATE PRODUCT',
+              style: TextStyle(
+                fontSize: 18,
+                letterSpacing: 3,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              controller: _brandNameController,
-              decoration: InputDecoration(
-                labelText: 'Brand Name',
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              controller: _quantityController,
-              decoration: InputDecoration(
-                labelText: 'Quantity',
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              controller: _productPriceController,
-              decoration: InputDecoration(
-                labelText: 'Price',
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              maxLength: 500,
-              maxLines: 3,
-              controller: _productDescriptionController,
-              decoration: InputDecoration(
-                labelText: 'Description',
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
