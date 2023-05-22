@@ -1,6 +1,8 @@
 import 'package:ecommerceapp/vendor/views/auth/screens/edit_products_tabs/published_tab.dart';
-import 'package:ecommerceapp/vendor/views/auth/screens/edit_products_tabs/unpublished_tab.dart';
+
 import 'package:flutter/material.dart';
+
+import 'edit_products_tabs/unpublished_tab.dart';
 
 class EditProductScreen extends StatelessWidget {
   const EditProductScreen({super.key});
@@ -11,15 +13,15 @@ class EditProductScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          elevation: 0,
           centerTitle: true,
+          elevation: 0,
           backgroundColor: Colors.yellow.shade900,
           title: Text(
             'Manage Products',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              letterSpacing: 7,
+              letterSpacing: 3,
             ),
           ),
           bottom: TabBar(
@@ -28,16 +30,10 @@ class EditProductScreen extends StatelessWidget {
                 child: Text('Published'),
               ),
               Tab(
-                child: Text('Unpublished'),
+                child: Text('UnPublished'),
               ),
             ],
           ),
-        ),
-        body: TabBarView(
-          children: [
-            PublishedTab(),
-            UnpublishedTab(),
-          ],
         ),
       ),
     );

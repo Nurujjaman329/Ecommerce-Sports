@@ -19,14 +19,14 @@ class VendorAuthScreen extends StatelessWidget {
         if (!snapshot.hasData) {
           return SignInScreen(providerConfigs: [
             EmailProviderConfiguration(),
-            GoogleProviderConfiguration(
-                clientId: '1:573827726190:android:7ed7cfbd8c5ffbdafa5f7f'),
-            PhoneProviderConfiguration(),
+            //GoogleProviderConfiguration(
+            //    clientId: '1:573827726190:android:7ed7cfbd8c5ffbdafa5f7f'),
+            //PhoneProviderConfiguration(),
           ]);
         }
 
         // Render your application if authenticated
-        return MainVendorScreen();
+        return LandingScreen();
       },
     );
   }

@@ -1,5 +1,7 @@
 import 'package:ecommerceapp/provider/cart_provider.dart';
 import 'package:ecommerceapp/provider/product_provider.dart';
+import 'package:ecommerceapp/vendor/views/auth/screens/landing_screen.dart';
+import 'package:ecommerceapp/vendor/views/auth/screens/main_vendor_screens.dart';
 import 'package:ecommerceapp/vendor/views/auth/screens/upload_screen.dart';
 import 'package:ecommerceapp/vendor/views/auth/vendors_auth.dart';
 import 'package:ecommerceapp/views/buyers/auth/login_screen.dart';
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: VendorAuthScreen(),
+      home: MainVendorScreen(),
       builder: EasyLoading.init(),
     );
   }
