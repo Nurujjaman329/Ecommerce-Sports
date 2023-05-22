@@ -29,19 +29,45 @@ class PublishedTab extends StatelessWidget {
           }
 
           return Container(
-            height: 150,
             child: ListView.builder(
+              shrinkWrap: true,
               itemCount: snapshot.data!.docs.length,
               itemBuilder: ((context, index) {
                 final vendorProductData = snapshot.data!.docs[index];
-                return Row(
-                  children: [
-                    Container(
-                      height: 80,
-                      width: 80,
-                      child: Image.network(vendorProductData['imageUrl'][0]),
-                    ),
-                  ],
+                return Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 80,
+                        width: 80,
+                        child: Image.network(vendorProductData['imageUrl'][0]),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            vendorProductData['productName'],
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            '\৳' +
+                                ' ' +
+                                vendorProductData['productPrice']
+                                    .toStringAsFixed(2),
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.yellow.shade900,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 );
               }),
             ),
