@@ -37,6 +37,10 @@ class _VendorProductDetailScreenState extends State<VendorProductDetailScreen> {
     super.initState();
   }
 
+  double? productPrice;
+
+  int? productQuantity;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,6 +73,9 @@ class _VendorProductDetailScreenState extends State<VendorProductDetailScreen> {
                 height: 20,
               ),
               TextFormField(
+                onChanged: (value) {
+                  productQuantity = int.parse(value);
+                },
                 controller: _quantityController,
                 decoration: InputDecoration(
                   labelText: 'Quantity',
@@ -78,6 +85,9 @@ class _VendorProductDetailScreenState extends State<VendorProductDetailScreen> {
                 height: 20,
               ),
               TextFormField(
+                onChanged: (value) {
+                  productPrice = double.parse(value);
+                },
                 controller: _productPriceController,
                 decoration: InputDecoration(
                   labelText: 'Price',
@@ -121,8 +131,8 @@ class _VendorProductDetailScreenState extends State<VendorProductDetailScreen> {
                 .update({
               'productName': _productNameController.text,
               'brandName': _brandNameController.text,
-              'quantity': _quantityController.text,
-              'productPrice': _productPriceController.text,
+              'quantity': productQuantity,
+              'productPrice': productPrice,
               'description': _productDescriptionController.text,
               'category': _categoryNameController.text,
             });
