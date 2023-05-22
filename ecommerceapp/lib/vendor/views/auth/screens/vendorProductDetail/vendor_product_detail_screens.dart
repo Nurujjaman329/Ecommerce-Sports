@@ -14,11 +14,21 @@ class VendorProductDetailScreen extends StatefulWidget {
 
 class _VendorProductDetailScreenState extends State<VendorProductDetailScreen> {
   final TextEditingController _productNameController = TextEditingController();
+  final TextEditingController _brandNameController = TextEditingController();
+  final TextEditingController _quantityController = TextEditingController();
+  final TextEditingController _productPriceController = TextEditingController();
+  final TextEditingController _productDescriptionController =
+      TextEditingController();
 
   @override
   void initState() {
     setState(() {
       _productNameController.text = widget.productData['productName'];
+      _brandNameController.text = widget.productData['brandName'];
+      _quantityController.text = widget.productData['quantity'].toString();
+      _productPriceController.text =
+          widget.productData['productPrice'].toString();
+      _productDescriptionController.text = widget.productData['description'];
     });
     super.initState();
   }
@@ -39,6 +49,44 @@ class _VendorProductDetailScreenState extends State<VendorProductDetailScreen> {
               controller: _productNameController,
               decoration: InputDecoration(
                 labelText: 'Product Name',
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              controller: _brandNameController,
+              decoration: InputDecoration(
+                labelText: 'Brand Name',
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              controller: _quantityController,
+              decoration: InputDecoration(
+                labelText: 'Quantity',
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              controller: _productPriceController,
+              decoration: InputDecoration(
+                labelText: 'Price',
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              maxLength: 500,
+              maxLines: 3,
+              controller: _productDescriptionController,
+              decoration: InputDecoration(
+                labelText: 'Description',
               ),
             ),
           ],
