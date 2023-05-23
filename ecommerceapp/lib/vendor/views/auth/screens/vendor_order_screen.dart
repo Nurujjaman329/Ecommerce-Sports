@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 
 class VendorOrderScreen extends StatelessWidget {
@@ -46,128 +47,161 @@ class VendorOrderScreen extends StatelessWidget {
 
           return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              return Column(
-                children: [
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 14,
-                      child: document['accepted'] == true
-                          ? Icon(Icons.delivery_dining)
-                          : Icon(Icons.access_time),
-                    ),
-                    title: document['accepted'] == true
-                        ? Text(
-                            'Accepted',
-                            style: TextStyle(
-                              color: Colors.blue,
-                            ),
-                          )
-                        : Text(
-                            'Not Accepted',
-                            style: TextStyle(
-                              color: Colors.red,
-                            ),
-                          ),
-                    trailing: Text(
-                      'Amount ' +
-                          ' ' +
-                          document['productPrice'].toStringAsFixed(2),
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.blueGrey,
-                      ),
-                    ),
-                    subtitle: Text(
-                      formatedDate(
-                        document['orderDate'].toDate(),
-                      ),
-                      style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 148, 197, 237)),
-                    ),
-                  ),
-                  ExpansionTile(
-                    title: Text(
-                      'Order Details',
-                      style: TextStyle(
-                          color: Colors.yellow.shade900,
-                          fontSize: 15,
-                          letterSpacing: 2),
-                    ),
-                    subtitle: Text('View Order Details'),
+              return Slidable(
+                  child: Column(
                     children: [
                       ListTile(
                         leading: CircleAvatar(
-                          child: Image.network(
-                            document['productImage'][0],
+                          backgroundColor: Colors.white,
+                          radius: 14,
+                          child: document['accepted'] == true
+                              ? Icon(Icons.delivery_dining)
+                              : Icon(Icons.access_time),
+                        ),
+                        title: document['accepted'] == true
+                            ? Text(
+                                'Accepted',
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                ),
+                              )
+                            : Text(
+                                'Not Accepted',
+                                style: TextStyle(
+                                  color: Colors.red,
+                                ),
+                              ),
+                        trailing: Text(
+                          'Amount ' +
+                              ' ' +
+                              document['productPrice'].toStringAsFixed(2),
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.blueGrey,
                           ),
                         ),
-                        title: Text(
-                          document['productName'],
+                        subtitle: Text(
+                          formatedDate(
+                            document['orderDate'].toDate(),
+                          ),
+                          style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 148, 197, 237)),
                         ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      ),
+                      ExpansionTile(
+                        title: Text(
+                          'Order Details',
+                          style: TextStyle(
+                              color: Colors.yellow.shade900,
+                              fontSize: 15,
+                              letterSpacing: 2),
+                        ),
+                        subtitle: Text('View Order Details'),
+                        children: [
+                          ListTile(
+                            leading: CircleAvatar(
+                              child: Image.network(
+                                document['productImage'][0],
+                              ),
+                            ),
+                            title: Text(
+                              document['productName'],
+                            ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Quantity :',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Text(
+                                      'Quantity :',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      document['quantity'].toString(),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  document['quantity'].toString(),
+                                document['accepted'] == true
+                                    ? Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Text('Shedule Delivery Date'),
+                                          Text(
+                                            formatedDate(
+                                              document['scheduleDate'].toDate(),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    : Text(''),
+                                ListTile(
+                                  title: Text(
+                                    'Buyer Details',
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  subtitle: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        document['fullName'],
+                                      ),
+                                      Text(
+                                        document['email'],
+                                      ),
+                                      Text(
+                                        document['address'],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
-                            document['accepted'] == true
-                                ? Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text('Shedule Delivery Date'),
-                                      Text(
-                                        formatedDate(
-                                          document['scheduleDate'].toDate(),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                : Text(''),
-                            ListTile(
-                              title: Text(
-                                'Buyer Details',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                              subtitle: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    document['fullName'],
-                                  ),
-                                  Text(
-                                    document['email'],
-                                  ),
-                                  Text(
-                                    document['address'],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              );
+                  // Specify a key if the Slidable is dismissible.
+                  key: const ValueKey(0),
+
+                  // The start action pane is the one at the left or the top side.
+                  startActionPane: ActionPane(
+                    // A motion is a widget used to control how the pane animates.
+                    motion: const ScrollMotion(),
+
+                    // A pane can dismiss the Slidable.
+
+                    // All actions are defined in the children parameter.
+                    children: [
+                      // A SlidableAction can have an icon and/or a label.
+                      SlidableAction(
+                        onPressed: (context) {},
+                        backgroundColor: Color(0xFFFE4A49),
+                        foregroundColor: Colors.white,
+                        icon: Icons.delete,
+                        label: 'Reject',
+                      ),
+                      SlidableAction(
+                        onPressed: (context) {},
+                        backgroundColor: Color(0xFF21B7CA),
+                        foregroundColor: Colors.white,
+                        icon: Icons.share,
+                        label: 'Accept',
+                      ),
+                    ],
+                  ));
             }).toList(),
           );
         },
