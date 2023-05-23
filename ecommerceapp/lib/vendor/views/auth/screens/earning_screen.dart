@@ -74,6 +74,7 @@ class EarningScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(14.0),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                           height: 150,
@@ -100,6 +101,41 @@ class EarningScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: Text(
                                   '\৳' + ' ' + totalOrder.toStringAsFixed(2),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 2),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          height: 150,
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          decoration: BoxDecoration(
+                            color: Colors.yellow.shade900,
+                            borderRadius: BorderRadius.circular(32),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text(
+                                  'Total Orders',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 2),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text(
+                                  snapshot.data!.docs.length.toString(),
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 18,
