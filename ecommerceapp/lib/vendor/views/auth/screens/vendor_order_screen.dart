@@ -17,8 +17,10 @@ class VendorOrderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _ordersStream =
-        FirebaseFirestore.instance.collection('orders').snapshots();
+    final Stream<QuerySnapshot> _ordersStream = FirebaseFirestore.instance
+        .collection('orders')
+        .where('vendorId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .snapshots();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow.shade900,

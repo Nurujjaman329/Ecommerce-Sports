@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerceapp/views/buyers/auth/login_screen.dart';
+import 'package:ecommerceapp/views/buyers/inner_screens/order_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../inner_screens/edit_profile.dart';
@@ -119,6 +121,18 @@ class AccountScreen extends StatelessWidget {
                 ListTile(
                   leading: Icon(Icons.shop),
                   title: Text('Cart'),
+                ),
+                ListTile(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return CustomerOrderScreen();
+                    }));
+                  },
+                  leading: Icon(
+                    CupertinoIcons.shopping_cart,
+                  ),
+                  title: Text('Order'),
                 ),
                 ListTile(
                   onTap: () async {
