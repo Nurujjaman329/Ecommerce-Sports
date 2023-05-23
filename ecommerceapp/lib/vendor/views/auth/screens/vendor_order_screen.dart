@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -115,7 +116,7 @@ class VendorOrderScreen extends StatelessWidget {
                                 Text(
                                   'Quantity :',
                                   style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -123,6 +124,42 @@ class VendorOrderScreen extends StatelessWidget {
                                   document['quantity'].toString(),
                                 ),
                               ],
+                            ),
+                            document['accepted'] == true
+                                ? Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text('Shedule Delivery Date'),
+                                      Text(
+                                        formatedDate(
+                                          document['scheduleDate'].toDate(),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : Text(''),
+                            ListTile(
+                              title: Text(
+                                'Buyer Details',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    document['fullName'],
+                                  ),
+                                  Text(
+                                    document['email'],
+                                  ),
+                                  Text(
+                                    document['address'],
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),

@@ -8,8 +8,10 @@ class EarningScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CollectionReference users = FirebaseFirestore.instance.collection('vendor');
-    final Stream<QuerySnapshot> _ordersStream =
-        FirebaseFirestore.instance.collection('orders').snapshots();
+    final Stream<QuerySnapshot> _ordersStream = FirebaseFirestore.instance
+        .collection('orders')
+        .where('vendorId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .snapshots();
     return FutureBuilder<DocumentSnapshot>(
       future: users.doc(FirebaseAuth.instance.currentUser!.uid).get(),
       builder:

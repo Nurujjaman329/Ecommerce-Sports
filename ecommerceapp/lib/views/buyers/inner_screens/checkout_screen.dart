@@ -136,7 +136,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                             final orderId = Uuid().v4();
                             _firestore.collection('orders').doc(orderId).set({
                               'orderId': orderId,
-                              'vendor': item.vendorId,
+                              'vendorId': item.vendorId,
                               'email': data['email'],
                               'phone': data['phoneNumber'],
                               'address': data['address'],
