@@ -8,6 +8,8 @@ class EarningScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CollectionReference users = FirebaseFirestore.instance.collection('vendor');
+    final Stream<QuerySnapshot> _ordersStream =
+        FirebaseFirestore.instance.collection('orders').snapshots();
     return FutureBuilder<DocumentSnapshot>(
       future: users.doc(FirebaseAuth.instance.currentUser!.uid).get(),
       builder:
@@ -48,6 +50,71 @@ class EarningScreen extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
+            body: StreamBuilder<QuerySnapshot>(
+              stream: _ordersStream,
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Something went wrong');
+                }
+
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Text("Loading");
+                }
+
+                double totalOrder = 0.0;
+
+                for (var orderItem in snapshot.data!.docs) {
+                  totalOrder +=
+                      orderItem['quantity'] * orderItem['productPrice'];
+                }
+
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 150,
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          decoration: BoxDecoration(
+                            color: Colors.yellow.shade900,
+                            borderRadius: BorderRadius.circular(32),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text(
+                                  'Total Earnings',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 2),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text(
+                                  '\৳' + ' ' + totalOrder.toStringAsFixed(2),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 2),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
           );
         }
