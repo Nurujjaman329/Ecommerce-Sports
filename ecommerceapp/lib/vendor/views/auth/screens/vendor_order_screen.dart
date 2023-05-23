@@ -87,6 +87,48 @@ class VendorOrderScreen extends StatelessWidget {
                           color: Color.fromARGB(255, 148, 197, 237)),
                     ),
                   ),
+                  ExpansionTile(
+                    title: Text(
+                      'Order Details',
+                      style: TextStyle(
+                          color: Colors.yellow.shade900,
+                          fontSize: 15,
+                          letterSpacing: 2),
+                    ),
+                    subtitle: Text('View Order Details'),
+                    children: [
+                      ListTile(
+                        leading: CircleAvatar(
+                          child: Image.network(
+                            document['productImage'][0],
+                          ),
+                        ),
+                        title: Text(
+                          document['productName'],
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  'Quantity :',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  document['quantity'].toString(),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               );
             }).toList(),
