@@ -1,8 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class VendorOrderScreen extends StatelessWidget {
-  const VendorOrderScreen({super.key});
+  String formatedDate(date) {
+    final outPutDateFormate = DateFormat('dd/MM/yyyy');
+
+    final outPutDate = outPutDateFormate.format(date);
+
+    return outPutDate;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +36,11 @@ class VendorOrderScreen extends StatelessWidget {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
+            return Center(
+              child: CircularProgressIndicator(
+                color: Colors.yellow.shade900,
+              ),
+            );
           }
 
           return ListView(
@@ -65,6 +76,15 @@ class VendorOrderScreen extends StatelessWidget {
                         fontSize: 15,
                         color: Colors.blueGrey,
                       ),
+                    ),
+                    subtitle: Text(
+                      formatedDate(
+                        document['orderDate'].toDate(),
+                      ),
+                      style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 148, 197, 237)),
                     ),
                   ),
                 ],
