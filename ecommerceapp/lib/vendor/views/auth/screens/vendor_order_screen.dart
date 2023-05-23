@@ -13,6 +13,8 @@ class VendorOrderScreen extends StatelessWidget {
     return outPutDate;
   }
 
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _ordersStream =
@@ -173,28 +175,32 @@ class VendorOrderScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  // Specify a key if the Slidable is dismissible.
-                  key: const ValueKey(0),
-
-                  // The start action pane is the one at the left or the top side.
                   startActionPane: ActionPane(
-                    // A motion is a widget used to control how the pane animates.
                     motion: const ScrollMotion(),
-
-                    // A pane can dismiss the Slidable.
-
-                    // All actions are defined in the children parameter.
                     children: [
-                      // A SlidableAction can have an icon and/or a label.
                       SlidableAction(
-                        onPressed: (context) {},
+                        onPressed: (context) async {
+                          await _firestore
+                              .collection('orders')
+                              .doc(document['orderId'])
+                              .update({
+                            'accepted': false,
+                          });
+                        },
                         backgroundColor: Color(0xFFFE4A49),
                         foregroundColor: Colors.white,
                         icon: Icons.delete,
                         label: 'Reject',
                       ),
                       SlidableAction(
-                        onPressed: (context) {},
+                        onPressed: (context) async {
+                          await _firestore
+                              .collection('orders')
+                              .doc(document['orderId'])
+                              .update({
+                            'accepted': true,
+                          });
+                        },
                         backgroundColor: Color(0xFF21B7CA),
                         foregroundColor: Colors.white,
                         icon: Icons.share,
