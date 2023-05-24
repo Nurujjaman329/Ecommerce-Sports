@@ -63,7 +63,12 @@ class AccountScreen extends StatelessWidget {
                   height: 15,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) {
+                      return LoginScreen();
+                    }));
+                  },
                   child: Container(
                     height: 40,
                     width: MediaQuery.of(context).size.width - 200,
