@@ -21,6 +21,75 @@ class WithdrawalScreens extends StatelessWidget {
           ),
         ),
       ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              TextFormField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Amount',
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              TextFormField(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: 'Name',
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              TextFormField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Mobile',
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              TextFormField(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: 'Bank Details',
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              TextFormField(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  labelText: 'Bank Account Name',
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              TextFormField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Bank Account Number',
+                ),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Get Cash',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
