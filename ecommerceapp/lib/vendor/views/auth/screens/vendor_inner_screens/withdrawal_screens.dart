@@ -3,7 +3,12 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 class WithdrawalScreens extends StatelessWidget {
-  const WithdrawalScreens({super.key});
+  late String amount;
+  late String name;
+  late String mobile;
+  late String bankName;
+  late String bankAccountName;
+  late String bankAccountNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +32,9 @@ class WithdrawalScreens extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
+                onChanged: (value) {
+                  amount = value;
+                },
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: 'Amount',
@@ -36,6 +44,9 @@ class WithdrawalScreens extends StatelessWidget {
                 height: 15,
               ),
               TextFormField(
+                onChanged: (value) {
+                  name = value;
+                },
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   labelText: 'Name',
@@ -45,6 +56,9 @@ class WithdrawalScreens extends StatelessWidget {
                 height: 15,
               ),
               TextFormField(
+                onChanged: (value) {
+                  mobile = value;
+                },
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: 'Mobile',
@@ -54,6 +68,9 @@ class WithdrawalScreens extends StatelessWidget {
                 height: 15,
               ),
               TextFormField(
+                onChanged: (value) {
+                  bankName = value;
+                },
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   labelText: 'Bank Details',
@@ -63,6 +80,9 @@ class WithdrawalScreens extends StatelessWidget {
                 height: 15,
               ),
               TextFormField(
+                onChanged: (value) {
+                  bankAccountName = value;
+                },
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   labelText: 'Bank Account Name',
@@ -72,6 +92,9 @@ class WithdrawalScreens extends StatelessWidget {
                 height: 15,
               ),
               TextFormField(
+                onChanged: (value) {
+                  bankAccountNumber = value;
+                },
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: 'Bank Account Number',
