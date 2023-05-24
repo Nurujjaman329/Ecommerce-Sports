@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class WithdrawalScreens extends StatefulWidget {
   @override
@@ -19,6 +21,8 @@ class _WithdrawalScreensState extends State<WithdrawalScreens> {
   late String bankAccountNumber;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -155,10 +159,21 @@ class _WithdrawalScreensState extends State<WithdrawalScreens> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       ////STORE DATA IN CLOUD FIRESTORE
-                      ///
+
+                      await _firestore
+                          .collection('withdrawal')
+                          .doc(Uuid().v4())
+                          .set({
+                        'Amount': amount,
+                        'Name': name,
+                        'Mobile': mobile,
+                        'BankName': bankName,
+                        'BankAccoutName': bankAccountName,
+                        'BankAccountNumber': bankAccountNumber
+                      });
                       print('True');
                     } else {
                       print('False');
