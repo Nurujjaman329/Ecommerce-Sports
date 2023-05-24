@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerceapp/vendor/views/auth/screens/vendor_inner_screens/withdrawal_screens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -146,6 +147,33 @@ class EarningScreen extends StatelessWidget {
                                 ),
                               ),
                             ],
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return WithdrawalScreens();
+                            }));
+                          },
+                          child: Container(
+                            height: 40,
+                            width: MediaQuery.of(context).size.width - 40,
+                            decoration: BoxDecoration(
+                              color: Colors.yellow.shade900,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Withdraw',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 3,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ],
