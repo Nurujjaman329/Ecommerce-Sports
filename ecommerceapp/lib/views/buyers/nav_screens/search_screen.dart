@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerceapp/views/buyers/productDetail/product_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -68,39 +69,47 @@ class _SearchScreenState extends State<SearchScreen> {
                 return SingleChildScrollView(
                   child: Column(
                     children: searchedData.map((e) {
-                      return Card(
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              height: 100,
-                              width: 100,
-                              child: Image.network(
-                                e['imageUrl'][0],
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return ProductDetailScreen(productData: e);
+                          }));
+                        },
+                        child: Card(
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                height: 100,
+                                width: 100,
+                                child: Image.network(
+                                  e['imageUrl'][0],
+                                ),
                               ),
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  e['productName'],
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    e['productName'],
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  '\৳' +
-                                      ' ' +
-                                      e['productPrice'].toStringAsFixed(2),
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.yellow.shade900,
+                                  Text(
+                                    '\৳' +
+                                        ' ' +
+                                        e['productPrice'].toStringAsFixed(2),
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.yellow.shade900,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     }).toList(),
