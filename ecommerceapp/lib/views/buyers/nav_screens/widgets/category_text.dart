@@ -24,8 +24,8 @@ class _CategoryTextState extends State<CategoryText> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'categories',
-            style: TextStyle(fontSize: 19),
+            'Categories',
+            style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
           ),
           StreamBuilder<QuerySnapshot>(
             stream: _categoryStream,
@@ -53,7 +53,7 @@ class _CategoryTextState extends State<CategoryText> {
                         itemBuilder: (context, index) {
                           final categoryData = snapshot.data!.docs[index];
                           return Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(5.0),
                             child: ActionChip(
                               backgroundColor: Colors.yellow.shade900,
                               onPressed: () {
@@ -63,14 +63,12 @@ class _CategoryTextState extends State<CategoryText> {
                                 });
                                 print(_selectedCategory);
                               },
-                              label: Center(
-                                child: Text(
-                                  categoryData['categoryName'],
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold),
-                                ),
+                              label: Text(
+                                categoryData['categoryName'],
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                           );
