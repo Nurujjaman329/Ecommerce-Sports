@@ -1,3 +1,4 @@
+import 'package:ecommerceapp/views/buyers/nav_screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,19 +14,25 @@ class SearchInputWidget extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
         child: TextField(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return SearchScreen();
+            }));
+          },
           decoration: InputDecoration(
-              fillColor: Colors.white,
-              filled: true,
-              hintText: 'Search For Products',
-              border: OutlineInputBorder(borderSide: BorderSide.none),
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(14.0),
-                child: SvgPicture.asset(
-                  'assets/icons/search.svg',
-                  width: 10,
-                  height: 10,
-                ),
-              )),
+            fillColor: Colors.white,
+            filled: true,
+            hintText: 'Search For Products',
+            border: OutlineInputBorder(borderSide: BorderSide.none),
+            prefixIcon: Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: SvgPicture.asset(
+                'assets/icons/search.svg',
+                width: 10,
+                height: 10,
+              ),
+            ),
+          ),
         ),
       ),
     );
