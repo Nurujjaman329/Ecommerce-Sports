@@ -15,7 +15,7 @@ class WelcomeText extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "Hey , What Are You\n Lokking for 👀",
+            "Hey , What Are You\n Looking for 👀",
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           Container(
