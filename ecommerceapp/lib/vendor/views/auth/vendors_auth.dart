@@ -12,7 +12,7 @@ class VendorAuthScreen extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       initialData: FirebaseAuth.instance.currentUser,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
+        if (!snapshot.hasData) {
           return SignInScreen(
             providers: [
               EmailAuthProvider(),
