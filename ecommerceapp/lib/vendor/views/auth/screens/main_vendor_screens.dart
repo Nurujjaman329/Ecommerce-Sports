@@ -3,11 +3,8 @@ import 'package:ecommerceapp/vendor/views/auth/screens/edit_product_screen.dart'
 import 'package:ecommerceapp/vendor/views/auth/screens/upload_screen.dart';
 import 'package:ecommerceapp/vendor/views/auth/screens/vendor_logout_screen.dart';
 import 'package:ecommerceapp/vendor/views/auth/screens/vendor_order_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class MainVendorScreen extends StatefulWidget {
   const MainVendorScreen({super.key});
