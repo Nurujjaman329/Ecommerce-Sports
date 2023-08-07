@@ -1,4 +1,4 @@
-# ecommerceapp
+# Sportistic
 
 A new Flutter project.
 
