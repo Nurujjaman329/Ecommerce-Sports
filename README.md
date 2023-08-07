@@ -1,16 +1,14 @@
 # Sportistic
 
-A new Flutter project.
+# Screenshot
 
-## Getting Started
+      
+![Main screen](https://github.com/Nurujjaman329/Ecommerce-Sports/assets/57903604/6d3cb335-3baa-465f-b486-bc206a612920)
 
-This project is a starting point for a Flutter application.
+                                                 Main Screen
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![Cart Screen](https://github.com/Nurujjaman329/Ecommerce-Sports/assets/57903604/5b8e49da-c4ad-4258-882f-25b72dd8738b)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+                                                 Cart Screen
