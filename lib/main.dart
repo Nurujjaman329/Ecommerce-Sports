@@ -18,8 +18,8 @@ import 'package:http/http.dart' as https;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  Stripe.publishableKey =
-      'pk_test_51NSiz5LaTLUABjKSEnSDFUq5I5RmbOjFp0fOMErFexM67onRFN4C1r84EYHPKDnhJpYM7YpoNDEAcpgLWK6pTcZd00QTYTJcBV';
+  //Stripe.publishableKey =
+  //    'pk_test_51NSiz5LaTLUABjKSEnSDFUq5I5RmbOjFp0fOMErFexM67onRFN4C1r84EYHPKDnhJpYM7YpoNDEAcpgLWK6pTcZd00QTYTJcBV';
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) {
