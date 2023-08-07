@@ -5,10 +5,10 @@
       
 ![Main screen](https://github.com/Nurujjaman329/Ecommerce-Sports/assets/57903604/6d3cb335-3baa-465f-b486-bc206a612920)
 
-                                                 Main Screen
+                                    Main Screen
 
 
 ![Cart Screen](https://github.com/Nurujjaman329/Ecommerce-Sports/assets/57903604/5b8e49da-c4ad-4258-882f-25b72dd8738b)
 
 
-                                                 Cart Screen
+                                   Cart Screen
